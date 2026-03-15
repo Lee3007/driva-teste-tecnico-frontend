@@ -1,0 +1,17 @@
+{
+  "name": "market-intelligence",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "dev:frontend": "pnpm --filter @market/frontend dev",
+    "dev:backend": "pnpm --filter @market/backend dev",
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "@tailwindcss/oxide"]
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}
