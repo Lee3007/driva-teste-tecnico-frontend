@@ -1,21 +1,19 @@
 import type { FastifyInstance } from "fastify";
-import { states } from "../data/states.js";
 import type { Region } from "@market/shared";
+import { StateRepository } from "../repositories/state.repository.js";
+import { StateService } from "../services/state.service.js";
 
-export async function statesRoutes(app: FastifyInstance) {
+const stateService = new StateService(new StateRepository());
+
+export async function stateController(app: FastifyInstance) {
   app.get("/api/states", async (request) => {
     const { region } = request.query as { region?: Region };
-    if (region) {
-      return states.filter((s) => s.region === region);
-    }
-    return states;
+    return stateService.getStates(region);
   });
 
   app.get("/api/states/:code", async (request, reply) => {
     const { code } = request.params as { code: string };
-    const state = states.find(
-      (s) => s.code.toLowerCase() === code.toLowerCase()
-    );
+    const state = stateService.getStateByCode(code);
     if (!state) {
       return reply.status(404).send({ error: "State not found" });
     }
