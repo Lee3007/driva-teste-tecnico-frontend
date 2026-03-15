@@ -1,5 +1,5 @@
 import { Menu, Map } from "lucide-react";
-import SearchBar from "./SearchBar";
+import { SearchBar } from "@/features/search";
 import type { State, Store } from "@market/shared";
 
 interface HeaderProps {
