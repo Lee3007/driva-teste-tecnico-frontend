@@ -139,5 +139,7 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .claude/*
 
-# Generated TypeScript declaration files
+# Generated TypeScript build artifacts
 frontend/vite.config.d.ts
+frontend/vite.config.d.ts.map
+frontend/vite.config.js
