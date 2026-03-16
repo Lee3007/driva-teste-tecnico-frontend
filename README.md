@@ -5,7 +5,7 @@
 ## Links
 - **Aplicacao:** https://driva-teste-tecnico-frontend-app.onrender.com/
 - **API:** https://driva-teste-tecnico-frontend-api.onrender.com/api
-- **Video:** [URL_VIDEO]
+- **Video:** https://youtu.be/WyxjgPisWNw
 
 ## Arquitetura
 
