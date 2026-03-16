@@ -143,3 +143,7 @@ vite.config.ts.timestamp-*
 frontend/vite.config.d.ts
 frontend/vite.config.d.ts.map
 frontend/vite.config.js
+
+# OS files
+.DS_Store
+Thumbs.db
