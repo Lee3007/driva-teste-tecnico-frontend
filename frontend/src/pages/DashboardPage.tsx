@@ -23,20 +23,28 @@ export default function DashboardPage() {
     apiData.expansionZones
   );
 
+  const resetView = useMapStore((s) => s.resetView);
+  const selectedStateCode = useMapStore((s) => s.selectedStateCode);
+
   const onClickState = useCallback(
     (info: any) => {
       if (info.object?.properties?.name) {
         const code = nameToCode[info.object.properties.name];
         if (code) {
-          setSelectedState(code);
-          const coords = capitalCoordinates[code];
-          if (coords) flyTo(coords[0], coords[1], 6);
+          if (code === selectedStateCode) {
+            setSelectedState(null);
+            resetView();
+          } else {
+            setSelectedState(code);
+            const coords = capitalCoordinates[code];
+            if (coords) flyTo(coords[0], coords[1], 6);
+          }
         }
       } else {
         setSelectedState(null);
       }
     },
-    [setSelectedState, flyTo]
+    [setSelectedState, flyTo, resetView, selectedStateCode]
   );
 
   const onHoverState = useCallback(
