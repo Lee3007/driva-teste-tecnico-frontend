@@ -36,7 +36,11 @@ export function createMarketPotentialLayer(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   geojson: any,
   states: State[],
-  selectedRegions: Region[]
+  selectedRegions: Region[],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick?: (info: any) => void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onHover?: (info: any) => void
 ) {
   if (!geojson) return null;
 
@@ -57,6 +61,8 @@ export function createMarketPotentialLayer(
     },
     getLineColor: [80, 80, 80, 100],
     lineWidthMinPixels: 1,
+    onClick,
+    onHover,
     updateTriggers: {
       getFillColor: [selectedRegions],
     },

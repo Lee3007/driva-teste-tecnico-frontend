@@ -2,7 +2,11 @@ import { ScatterplotLayer } from "@deck.gl/layers";
 import type { DemandData } from "@market/shared";
 import { capitalCoordinates } from "@/shared/utils/capitalCoordinates";
 
-export function createDemandLayer(demand: DemandData[]) {
+export function createDemandLayer(
+  demand: DemandData[],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick?: (info: any) => void
+) {
   if (demand.length === 0) return null;
 
   const min = Math.min(...demand.map((d) => d.estimatedDemand));
@@ -29,5 +33,6 @@ export function createDemandLayer(demand: DemandData[]) {
     lineWidthMinPixels: 1,
     stroked: true,
     pickable: true,
+    onClick,
   });
 }

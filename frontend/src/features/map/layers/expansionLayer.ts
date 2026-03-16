@@ -17,7 +17,11 @@ const LINE_COLORS: Record<string, [number, number, number, number]> = {
 export function createExpansionLayer(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   geojson: any,
-  expansionZones: ExpansionZone[]
+  expansionZones: ExpansionZone[],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick?: (info: any) => void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onHover?: (info: any) => void
 ) {
   if (!geojson || expansionZones.length === 0) return null;
 
@@ -48,6 +52,8 @@ export function createExpansionLayer(
       return zone ? LINE_COLORS[zone.priority] : [0, 0, 0, 0];
     },
     lineWidthMinPixels: 3,
+    onClick,
+    onHover,
     updateTriggers: {
       getFillColor: [expansionZones],
       getLineColor: [expansionZones],

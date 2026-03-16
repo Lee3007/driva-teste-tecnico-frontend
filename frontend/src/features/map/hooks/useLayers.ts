@@ -68,18 +68,18 @@ export function useLayers({
     // Market potential heatmap
     if (layers.marketPotential) {
       result.push(
-        createMarketPotentialLayer(geojson, states, selectedRegions)
+        createMarketPotentialLayer(geojson, states, selectedRegions, onClickState, onHoverState)
       );
     }
 
     // Expansion zones
     if (layers.expansion) {
-      result.push(createExpansionLayer(geojson, expansionZones));
+      result.push(createExpansionLayer(geojson, expansionZones, onClickState, onHoverState));
     }
 
     // Demand bubbles
     if (layers.demand) {
-      result.push(createDemandLayer(demand));
+      result.push(createDemandLayer(demand, onClickState));
     }
 
     // Stores

@@ -28,17 +28,22 @@ export default function DashboardPage() {
 
   const onClickState = useCallback(
     (info: any) => {
+      // Resolve state code from GeoJSON feature or DemandData object
+      let code: string | undefined;
       if (info.object?.properties?.name) {
-        const code = nameToCode[info.object.properties.name];
-        if (code) {
-          if (code === selectedStateCode) {
-            setSelectedState(null);
-            resetView();
-          } else {
-            setSelectedState(code);
-            const coords = capitalCoordinates[code];
-            if (coords) flyTo(coords[0], coords[1], 6);
-          }
+        code = nameToCode[info.object.properties.name];
+      } else if (info.object?.stateCode) {
+        code = info.object.stateCode;
+      }
+
+      if (code) {
+        if (code === selectedStateCode) {
+          setSelectedState(null);
+          resetView();
+        } else {
+          setSelectedState(code);
+          const coords = capitalCoordinates[code];
+          if (coords) flyTo(coords[0], coords[1], 6);
         }
       } else {
         setSelectedState(null);
