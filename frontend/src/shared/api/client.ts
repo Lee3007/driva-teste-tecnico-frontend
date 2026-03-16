@@ -9,7 +9,7 @@ import type {
 } from "@market/shared";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "/api",
+  baseURL: import.meta.env.VITE_API_URL || "https://driva-teste-tecnico-frontend-api.onrender.com/api",
 });
 
 export async function getStates(region?: string): Promise<State[]> {
