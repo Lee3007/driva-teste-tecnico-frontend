@@ -33,7 +33,7 @@ export default function StatePanel({
   if (!selectedStateCode || !state) return null;
 
   return (
-    <div className="fixed top-14 right-0 h-[calc(100%-3.5rem)] w-96 max-w-full bg-[#13132b] border-l border-white/10 z-30 overflow-y-auto transition-transform duration-300 ease-in-out">
+    <div className="fixed top-14 right-0 h-[calc(100%-3.5rem)] w-full md:w-96 bg-[#13132b] border-l border-white/10 z-30 overflow-y-auto transition-transform duration-300 ease-in-out">
       <StatePanelHeader state={state} onClose={handleClose} />
       <div className="p-4 space-y-4">
         <StateMetrics state={state} />
