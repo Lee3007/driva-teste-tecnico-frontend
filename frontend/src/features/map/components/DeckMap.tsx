@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import DeckGL from "@deck.gl/react";
-import { Map, NavigationControl } from "react-map-gl/maplibre";
+import { Map } from "react-map-gl/maplibre";
 import { FlyToInterpolator } from "@deck.gl/core";
 import type { Layer } from "@deck.gl/core";
 import "maplibre-gl/dist/maplibre-gl.css";
@@ -19,6 +19,9 @@ interface DeckMapProps {
 export default function DeckMap({ layers }: DeckMapProps) {
   const viewState = useMapStore((s) => s.viewState);
   const setViewState = useMapStore((s) => s.setViewState);
+
+  const zoomIn = () => setViewState({ zoom: viewState.zoom + 1 });
+  const zoomOut = () => setViewState({ zoom: Math.max(viewState.zoom - 1, 1) });
 
   const onViewStateChange = useCallback(
     ({ viewState: vs }: any) => {
@@ -87,11 +90,24 @@ export default function DeckMap({ layers }: DeckMapProps) {
         controller={true}
         layers={layers}
         getTooltip={getTooltip}
+        style={{ position: "relative" }}
       >
-        <Map mapStyle={MAP_STYLE}>
-          <NavigationControl position="top-right" />
-        </Map>
+        <Map mapStyle={MAP_STYLE} />
       </DeckGL>
+      <div className="absolute top-3 right-3 z-10 flex flex-col gap-0.5">
+        <button
+          onClick={zoomIn}
+          className="w-8 h-8 bg-[#0f0f23]/90 border border-white/20 rounded-t-md text-white hover:bg-white/20 transition-colors flex items-center justify-center text-lg font-bold"
+        >
+          +
+        </button>
+        <button
+          onClick={zoomOut}
+          className="w-8 h-8 bg-[#0f0f23]/90 border border-white/20 rounded-b-md text-white hover:bg-white/20 transition-colors flex items-center justify-center text-lg font-bold"
+        >
+          -
+        </button>
+      </div>
     </div>
   );
 }
