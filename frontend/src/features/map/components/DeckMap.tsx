@@ -20,8 +20,8 @@ export default function DeckMap({ layers }: DeckMapProps) {
   const viewState = useMapStore((s) => s.viewState);
   const setViewState = useMapStore((s) => s.setViewState);
 
-  const zoomIn = () => setViewState({ zoom: viewState.zoom + 0.5 });
-  const zoomOut = () => setViewState({ zoom: Math.max(viewState.zoom - 0.5, 1) });
+  const zoomIn = () => setViewState({ zoom: viewState.zoom + 0.5, transitionDuration: 300 });
+  const zoomOut = () => setViewState({ zoom: Math.max(viewState.zoom - 0.5, 1), transitionDuration: 300 });
 
   const onViewStateChange = useCallback(
     ({ viewState: vs }: any) => {
